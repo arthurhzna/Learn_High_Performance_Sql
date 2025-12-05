@@ -1,4 +1,4 @@
-Build image:
+Build Image:
     docker build -t my-postgres-image .
 
 Run Container:
