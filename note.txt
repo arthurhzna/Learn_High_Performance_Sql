@@ -1,0 +1,19 @@
+Subquery: brief summary
+
+- Comparison operators (=, <>, >, <, >=, <=):
+  The subquery must return a single value (scalar). Example:
+  WHERE value > (SELECT MAX(col) FROM ...)
+
+- IN / NOT IN:
+  The subquery must return a single column (a set of values). Example:
+  WHERE id IN (SELECT user_id FROM ...)
+
+- ALL / SOME / ANY (used with comparison operators):
+  The subquery must return a single column. Example:
+  WHERE score > ALL (SELECT score FROM ...)
+  WHERE name = ANY (SELECT name FROM ...)
+
+- Important notes:
+  - The structure of the subquery result must match the operator being used.
+  - Use EXISTS to check for existence only (often more efficient than IN for large subqueries).
+  - Use scalar subqueries in SELECT only if the subquery returns at most one row per parent row.
