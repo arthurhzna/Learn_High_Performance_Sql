@@ -77,3 +77,55 @@ LEFT JOIN (
   GROUP BY o.user_id
 ) paid_t ON paid_t.user_id = u.id;
 
+SELECT
+  (SELECT MAX(price) FROM phones) AS max_price,
+  (SELECT MIN(price) FROM phones) AS min_price,
+  (SELECT AVG(price) FROM phones) AS avg_price;
+
+
+SELECT (
+  SELECT MAX(price) FROM products
+) / (
+  SELECT MIN(price) FROM products
+) AS price_ratio;
+
+SELECT name, department, price
+FROM products AS p1
+WHERE p1.price = (
+  SELECT MAX(price)
+  FROM products AS p2
+  WHERE p1.department = p2.department
+);
+
+
+SELECT p1.name,
+(
+  SELECT COUNT(*)
+  FROM orders AS o1
+  WHERE o1.product_id = p1.id
+) AS num_orders
+FROM products AS p1;
+
+
+SELECT
+  u.id,
+  u.first_name,
+  u.last_name,
+  (
+    SELECT COUNT(*)
+    FROM orders o
+    WHERE o.user_id = u.id
+  ) AS orders_count
+FROM users u;
+
+SELECT *
+FROM table1 t1
+WHERE t1.a > (SELECT MAX(a) FROM table2);
+
+SELECT *
+FROM table1 t1
+WHERE t1.a > ALL (SELECT a FROM table2);
+
+SELECT *
+FROM table1 t1
+WHERE t1.a > SOME (SELECT a FROM table2);
