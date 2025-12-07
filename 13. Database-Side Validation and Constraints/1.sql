@@ -18,4 +18,8 @@ ALTER TABLE users_constraints
 ALTER TABLE users_constraints
   ADD CONSTRAINT username_no_spaces CHECK (username NOT LIKE '% %');
 
+/*Perintah untuk menambahkan constraint (aturan/pengecekan integritas) dengan nama ke tabel. 
+Biasanya dipakai ALTER TABLE ... ADD CONSTRAINT constraint_name <tipe> (...) atau 
+CHECK (... )*/
+
 SELECT * FROM users_constraints;
