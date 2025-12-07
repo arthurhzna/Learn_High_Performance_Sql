@@ -8,4 +8,6 @@ SELECT * FROM cities ORDER BY population DESC;
 
 SELECT * FROM cities OFFSET 2;
 
-SELECT * FROM cities LIMIT 2;
+SELECT * FROM cities LIMIT 2; 
+
+SELE
